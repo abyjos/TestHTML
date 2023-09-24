@@ -1,0 +1,45 @@
+<!-- usage is as below 
+file:///CheckIfValidImage.html?imageURL=https://www.intellitide.com/wp-content/uploads/2023/06/logo-1-e1688108643807.png
+-->
+
+<!DOCTYPE html>
+<html>
+<body>
+
+<p id="demo">This is a demonstration.</p>
+<!--<button type="button" onclick="myFunction()">Click Me!</button> -->
+
+<script>
+
+window.onload = function() {
+  myFunction();
+};
+
+function myFunction() { 
+//  checkIfImageIsValid("https://www.intellitide.com/wp-content/uploads/2023/06/logo-1-e1688108643807.png");
+  var url=getURL();
+  checkIfImageIsValid(url);
+}
+
+var checkIfImageIsValid = function(url){
+    console.log("1");
+    var s = document.createElement("IMG");
+    s.src = url
+    s.onerror = function(){
+  		document.getElementById("demo").innerHTML = "file with "+url+" is INVALID";
+    }
+    s.onload = function(){
+        document.getElementById("demo").innerHTML = "file with "+url+" is VALID";
+    }
+}
+
+function getURL() {
+  const urlParams = new URLSearchParams(window.location.search);
+  const paramValue = urlParams.get('imageURL');
+  return paramValue;
+}
+
+</script>
+
+</body>
+</html>
